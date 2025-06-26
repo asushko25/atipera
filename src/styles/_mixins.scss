@@ -1,0 +1,55 @@
+$bp-tablet: 768px;
+$bp-phone: 480px;
+
+@mixin container($max: 1200px) {
+  width: 90%;
+  max-width: $max;
+  margin-inline: auto;
+}
+
+@mixin respond($bp) {
+  @if $bp == tablet {
+    @media (max-width: #{$bp-tablet}) { 
+      @content;
+    }
+  }
+  @if $bp == phone {
+    @media (max-width: #{$bp-phone}) {
+      @content;
+    }
+  }
+}
+
+@mixin responsive-table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+
+  table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    white-space: nowrap;
+    padding: $spacing;
+    text-align: left;
+  }
+
+  @include respond(tablet) {
+    th,
+    td {
+      padding: $spacing * 0.625;
+    }
+  }
+
+  @include respond(phone) {
+    th,
+    td {
+      padding: $spacing * 0.5;
+      font-size: 0.75rem;
+    }
+  }
+}
